@@ -1,27 +1,19 @@
-import { component$, Slot } from '@builder.io/qwik';
-import { routeLoader$ } from '@builder.io/qwik-city';
+import { component$, Slot } from "@builder.io/qwik";
 
-import Header from '~/components/starter/header/header';
-import Footer from '~/components/starter/footer/footer';
-
-export const useServerTimeLoader = routeLoader$(() => {
-  return {
-    date: new Date().toISOString(),
-  };
-});
+import Footer from "~/components/starter/footer/footer";
 
 export default component$(() => {
   return (
     <div class="page">
-      <main>
-        <Header />
+      <main
+        style={{
+          background: "url(/download.gif) repeat center center",
+          height: "100vh",
+        }}
+      >
         <Slot />
+        <Footer />
       </main>
-      <div class="section dark">
-        <div class="container">
-          <Footer />
-        </div>
-      </div>
     </div>
   );
 });
