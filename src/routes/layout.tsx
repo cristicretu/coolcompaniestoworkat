@@ -8,7 +8,7 @@ export default component$(() => {
       <main
         style={{
           background: "url(/download.gif) repeat center center",
-          height: "100vh",
+          minHeight: "100vh",
         }}
       >
         <Slot />

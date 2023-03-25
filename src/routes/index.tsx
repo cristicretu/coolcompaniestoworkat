@@ -17,7 +17,6 @@ function parseMarkdown(markdown: string): Company[] {
 
   for (const line of lines) {
     if (line.startsWith("- [")) {
-      console.log(line);
       const title = line.match(/\[(.*?)\]/)?.[1] || "";
       const link = line.match(/\((.*?)\)/)?.[1] || "";
       company = { title, link, description: "" };
@@ -42,14 +41,39 @@ export default component$(() => {
 
   return (
     <>
-      <div>
+      <div
+        style={{
+          paddingTop: "20px",
+          paddingLeft: "20px",
+        }}
+      >
         {companies.value?.map((company, index) => (
-          <div key={index}>
-            <a href={company.link} rel="noopener noreferrer" target="_blank">
-              {company.title}
-            </a>
-            <p>{company.description}</p>
-          </div>
+          <>
+            <div
+              key={index}
+              // give them random positions, make sure it's on the screen
+              // make sure they don't overlap
+              style={{
+                position: "absolute",
+                top: `${Math.random() * 70 + 15}vh`,
+                left: `${Math.random() * 70 + 15}vw`,
+                transform: `translate(-50%, -50%)`,
+              }}
+            >
+              <a
+                href={company.link}
+                rel="noopener noreferrer"
+                target="_blank"
+                class="wordart"
+              >
+                {" "}
+                {company.title}
+              </a>
+            </div>
+            <p>
+              {company.title} | {company.description}
+            </p>
+          </>
         ))}
       </div>
     </>
